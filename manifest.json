@@ -1,9 +1,9 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "ChromeGo",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "This extension was created with the awesome extensionizr.com",
-  "homepage_url": "http://extensionizr.com",
+  "description": "Inspired by GnomeDo this extension lets you search bookmarks and history right at your fingertips",
+  "homepage_url": "http://bartinger.at",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
