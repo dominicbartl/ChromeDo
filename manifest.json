@@ -1,34 +1,43 @@
 {
-  "name": "ChromeGo",
-  "version": "0.0.1",
-  "manifest_version": 2,
-  "description": "Inspired by GnomeDo this extension lets you search bookmarks and history right at your fingertips",
-  "homepage_url": "http://bartinger.at",
-  "icons": {
-    "16": "icons/icon16.png",
-    "48": "icons/icon48.png",
-    "128": "icons/icon128.png"
-  },
-  "default_locale": "en",
-  "background": {
-    "scripts": [
-      "src/bg/background.js"
-    ],
-    "persistent": true
-  },
-  "options_page": "src/options/index.html",
-  "permissions": [
-    "bookmarks",
-    "history"
-  ],
-  "content_scripts": [
-    {
-      "matches": [
-        "https://www.google.com/*"
-      ],
-      "js": [
-        "src/inject/inject.js"
-      ]
-    }
-  ]
+	"name": "ChromeGo",
+	"version": "0.0.1",
+	"manifest_version": 2,
+	"description": "Inspired by GnomeDo this extension lets you search bookmarks and history right at your fingertips",
+	"homepage_url": "http://bartinger.at",
+	"icons": {
+		"16": "icons/icon16.png",
+		"48": "icons/icon48.png",
+		"128": "icons/icon128.png"
+	},
+	"default_locale": "en",
+	"background": {
+		"scripts": [
+			"src/bg/background.js"
+		],
+		"persistent": true
+	},
+	"options_page": "src/options/index.html",
+	"permissions": [
+		"bookmarks",
+		"history"
+	],
+	"commands": {
+		"show-popup": {
+			"suggested_key": {
+				"default": "Ctrl+Period",
+				"mac": "Command+Period"
+			},
+			"description": "Toggle feature foo"
+		}
+	},
+	"content_scripts": [
+		{
+			"matches": [
+				"https://www.google.com/*"
+			],
+			"js": [
+				"src/inject/inject.js"
+			]
+		}
+	]
 }
