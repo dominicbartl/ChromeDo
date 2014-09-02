@@ -12,6 +12,7 @@
 	"default_locale": "en",
 	"background": {
 		"scripts": [
+			"src/options/bookmarks.js",
 			"src/bg/background.js"
 		],
 		"persistent": true
@@ -33,7 +34,7 @@
 	"content_scripts": [
 		{
 			"matches": [
-				"https://www.google.com/*"
+				"<all_urls>"
 			],
 			"js": [
 				"src/inject/inject.js"
