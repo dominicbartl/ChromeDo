@@ -1,5 +1,5 @@
 {
-	"name": "ChromeGo",
+	"name": "ChromeDo",
 	"version": "0.0.1",
 	"manifest_version": 2,
 	"description": "Inspired by GnomeDo this extension lets you search bookmarks and history right at your fingertips",
@@ -25,8 +25,8 @@
 	"commands": {
 		"show-popup": {
 			"suggested_key": {
-				"default": "Ctrl+Period",
-				"mac": "Command+Period"
+				"default": "Ctrl+Shift+Y",
+				"mac": "Command+Shift+Y"
 			},
 			"description": "Toggle feature foo"
 		}
