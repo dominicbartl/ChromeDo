@@ -1,6 +1,9 @@
 window.Bookmarks = {
 
 	get: function ( callback ) {
+		if (!chrome.bookmarks) {
+			return;
+		};
 		var self = this;
 		chrome.bookmarks.getTree(function ( bookmarks ) {
 			var list = [];

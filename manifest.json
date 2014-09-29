@@ -15,7 +15,7 @@
 			"src/options/bookmarks.js",
 			"src/bg/background.js"
 		],
-		"persistent": true
+		"persistent": false
 	},
 	"options_page": "src/options/index.html",
 	"permissions": [
@@ -25,8 +25,9 @@
 	"commands": {
 		"show-popup": {
 			"suggested_key": {
-				"default": "Ctrl+Shift+Y",
-				"mac": "Command+Shift+Y"
+				"default": "Alt+Shift+Period",
+				"mac": "Alt+Shift+Period",
+				"linux": "Alt+Shift+Period"
 			},
 			"description": "Toggle feature foo"
 		}
@@ -40,5 +41,8 @@
 				"src/inject/inject.js"
 			]
 		}
+	],
+	"web_accessible_resources": [
+		"src/chromedo.html"
 	]
 }

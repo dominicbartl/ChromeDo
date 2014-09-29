@@ -1,43 +1,24 @@
-console.log('Injected javascript has been loaded.');
+console.log('Injected javascript has been loaded. v2');
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-		var list = createList(request);
-		//appendHtml(document.body, list);
-		createIFrame();
+		var url = chrome.extension.getURL('src/chromedo.html');
+		createIFrame(url);
 	});
 
-function createList(list) {
-	var html = '<ul>';
-	for (var i = list.length - 1; i >= 0; i--) {
-		html += createItem(list[i]);
-	};
-	return html + '</ul>';
-}
 
-function createItem(item) {
-	var html = '<li>';
-	if (item.title) {
-		html += item.title + '<p>' + item.url + '</p>';
-	} else {
-		html += item.url;
+
+function createIFrame(url) {
+	var id = 'chromedo-frame';
+	if(document.getElementById(id)) {
+		return;
 	}
-	return html + '</li>';
-}
-
-function appendHtml(el, str) {
-	var div = document.createElement('div');
-	div.innerHTML = str;
-	while (div.children.length > 0) {
-		el.appendChild(div.children[0]);
-	}
-	console.log(arguments);
-}
-
-function createIFrame() {
 	var ifrm = document.createElement("iframe");
-	ifrm.setAttribute('src', 'http://developerfusion.com/');
-	ifrm.setAttribute('style', 'frameborder="0"');
+	ifrm.setAttribute('src', url);
+	ifrm.setAttribute('id', id);
+	ifrm.setAttribute('frameborder', '0');
+	ifrm.setAttribute('style', 'position:fixed; top: 100px; right:0; left:0; margin: 0 auto; z-index:99999;');
 	ifrm.style.width = 640 + "px";
-	ifrm.style.height = 480 + "px";
+	ifrm.style.height = 600 + "px";
 	document.body.appendChild(ifrm);
+	
 }

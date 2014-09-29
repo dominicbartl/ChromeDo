@@ -1,7 +1,14 @@
+
 chrome.commands.onCommand.addListener(function (command) {
 	console.log('Background page: got command (' + command + ')');
 	if (command == 'show-popup') {
 		sendBookmarks();
+	};
+});
+
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse){
+	if (message === 'bookmarks') {
+		sendResponse(window.bms);
 	};
 });
 
