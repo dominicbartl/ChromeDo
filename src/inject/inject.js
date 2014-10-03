@@ -1,15 +1,13 @@
 console.log('Injected javascript has been loaded. v2');
 chrome.runtime.onMessage.addListener(
 	function(request, sender, sendResponse) {
-		var url = chrome.extension.getURL('src/chromedo.html');
-		createIFrame(url);
+		/*var url = chrome.extension.getURL('src/chromedo.html');
+		createIFrame(url);*/
 	});
-
-
 
 function createIFrame(url) {
 	var id = 'chromedo-frame';
-	if(document.getElementById(id)) {
+	if (document.getElementById(id)) {
 		return;
 	}
 	var ifrm = document.createElement("iframe");
@@ -20,5 +18,13 @@ function createIFrame(url) {
 	ifrm.style.width = 640 + "px";
 	ifrm.style.height = 600 + "px";
 	document.body.appendChild(ifrm);
-	
 }
+
+window.onkeyup = function(e) {
+	if (e.ctrlKey && e.which === 32) {
+		event.preventDefault();
+		var url = chrome.extension.getURL('src/chromedo.html');
+		createIFrame(url);
+		return;
+	}
+};
