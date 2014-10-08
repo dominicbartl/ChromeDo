@@ -15,7 +15,7 @@ $(document).ready(function () {
 				focusIndex--;
 			}
 		} else if (event.keyCode === 27) {
-			//Esc
+			parent.window.postMessage('removeFrame', '*');
 		} else if (event.keyCode === 13) {
 			var url = $('.focus a').attr('href');
 			if (event.ctrlKey) {
@@ -31,16 +31,6 @@ $(document).ready(function () {
 		focusCurrent();
 	});
 });
-
-
-var listener = {
-	onEscPressed: function(){
-		console.log('default func of onEscPressed');
-	},
-	onSearchEnter: function(url) {
-		console.log('default func of onSearchEnter(' + url + ')');
-	}
-};
 var options = {
   keys: ['title', 'url'],   // keys to search in
   id: 'id',                  // return a list of identifiers only
@@ -127,8 +117,4 @@ function indexOf2D( array, value ) {
 		}
 	};
 	return -1;
-}
-
-function addListener(callback) {
-	listener = callback;
 }
