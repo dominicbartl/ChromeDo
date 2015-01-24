@@ -1,29 +1,35 @@
+var KEY_UP = 38;
+var KEY_DOWN = 40;
+var KEY_ESC = 27;
+var KEY_ENTER = 13;
+
 $(document).ready(function () {
 	$('.search-input').keyup(function (event) {
-		if (event.keyCode === 40) {
+		if (event.keyCode === KEY_DOWN) {
 			event.preventDefault();
 			if (focusIndex >= currentResults.length -1) {
 				focusIndex = 0;
 			} else {
 				focusIndex++;
 			}
-		} else if(event.keyCode === 38) {
+		} else if(event.keyCode === KEY_UP) {
 			event.preventDefault();
 			if (focusIndex <= 0) {
 				focusIndex = currentResults.length-1;
 			} else {
 				focusIndex--;
 			}
-		} else if (event.keyCode === 27) {
+		} else if (event.keyCode === KEY_ESC) {
 			exit();
-		} else if (event.keyCode === 13) {
-			openSelected();
+		} else if (event.keyCode === KEY_ENTER) {
+			openSelected(event.ctrlKey);
 		} else {
 			var query = event.currentTarget.value;
 			search(query);
 			focusIndex = 0;
 		}
 		focusCurrent();
+		return false;
 	});
 
 	$('.container').click(function (event) {
@@ -81,13 +87,13 @@ function search(q) {
 	
 }
 
-function openSelected() {
+function openSelected(newTab) {
 	var url = $('.focus a').attr('href');
 	if (!url) {
 		exit();
 		return;
 	}
-	if (event.ctrlKey) {
+	if (newTab) {
 		window.parent.open(url,'_blank');
 	} else {
 		window.parent.location.href = url;
@@ -116,6 +122,7 @@ function highlight( ids ) {
 }
 
 function focusCurrent() {
+	console.log('asdasd');
 	if (focusIndex < 0) {
 		return;
 	}
@@ -127,7 +134,7 @@ function focusCurrent() {
 
 function indexOf2D( array, value ) {
 	for (var i = array.length - 1; i >= 0; i--) {
-		if(array[i][0] == value) {
+		if(array[i] == value) {
 			return i;
 		}
 	};
