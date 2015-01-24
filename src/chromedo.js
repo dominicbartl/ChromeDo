@@ -48,6 +48,7 @@ var options = {
 };
 var focusIndex = -1;
 var currentResults;
+var lastQuery = '';
 
 /*
 Send message to background page to request all bookmarks
@@ -88,9 +89,13 @@ function appendHtml(el, str) {
 }
 
 function search(q) {
-	console.log('Search for: ' + q);
-	currentResults = fuzzy.search(q);
-	highlight(currentResults);
+	q = q.trim();
+	if (q != lastQuery) {
+		console.log('Search for: ' + q);
+		currentResults = fuzzy.search(q);
+		highlight(currentResults);
+		lastQuery = q;
+	}
 	
 }
 
@@ -110,10 +115,10 @@ function openSelected(newTab) {
 
 function highlight( ids ) {
 	$('.entry').css('display', 'none');
-	var nodes = $.map( ids, function(i) { return document.getElementById(i) } );
+	var nodes = $.map( ids, function (i) { return document.getElementById(i) } );
 	var jqObj = $(nodes);
 	jqObj.detach();
-	jqObj.sort( function (a, b) {
+	jqObj.sort(function (a, b) {
 		var ia = indexOf2D(currentResults, a.id);
 		var ib = indexOf2D(currentResults, b.id);
 		if (ia > ib) {
@@ -129,7 +134,7 @@ function highlight( ids ) {
 }
 
 function focusCurrent() {
-	if (focusIndex < 0) {
+	if (focusIndex < 0 || !currentResults) {
 		return;
 	}
 	var id = currentResults[focusIndex];
