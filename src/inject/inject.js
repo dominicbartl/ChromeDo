@@ -18,10 +18,15 @@ window.onkeyup = function(e) {
 		event.preventDefault();
 		var url = chrome.extension.getURL('src/chromedo.html');
 		createIFrame(url);
-		return;
+		return false;
 	} else if(e.keyCode === 27) {
 		removeFrame();
 	}
+};
+
+//Prevent scrolling on Mac #1
+window.onkeydown = function(event) { 
+    return !(event.ctrlKey && event.keyCode == 32);
 };
 
 function removeFrame() {

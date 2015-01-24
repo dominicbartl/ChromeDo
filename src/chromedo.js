@@ -4,6 +4,7 @@ var KEY_ESC = 27;
 var KEY_ENTER = 13;
 
 $(document).ready(function () {
+
 	$('.search-input').keyup(function (event) {
 		if (event.keyCode === KEY_DOWN) {
 			event.preventDefault();
@@ -29,7 +30,6 @@ $(document).ready(function () {
 			focusIndex = 0;
 		}
 		focusCurrent();
-		return false;
 	});
 
 	$('.container').click(function (event) {
@@ -122,12 +122,10 @@ function highlight( ids ) {
 }
 
 function focusCurrent() {
-	console.log('asdasd');
 	if (focusIndex < 0) {
 		return;
 	}
 	var id = currentResults[focusIndex];
-	console.log(id);
 	$('.entry').removeClass('focus');
 	$('#' + id).addClass('focus');
 }
