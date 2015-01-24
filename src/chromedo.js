@@ -1,6 +1,7 @@
 $(document).ready(function () {
-	$('.search-box').keyup(function (event) {
+	$('.search-input').keyup(function (event) {
 		if (event.keyCode === 40) {
+			console.log(event);
 			event.preventDefault();
 			if (focusIndex >= currentResults.length -1) {
 				focusIndex = 0;
@@ -15,7 +16,7 @@ $(document).ready(function () {
 				focusIndex--;
 			}
 		} else if (event.keyCode === 27) {
-			parent.window.postMessage('removeFrame', '*');
+			exit();
 		} else if (event.keyCode === 13) {
 			var url = $('.focus a').attr('href');
 			if (event.ctrlKey) {
@@ -30,6 +31,15 @@ $(document).ready(function () {
 		}
 		focusCurrent();
 	});
+
+	$('.container').click(function (event) {
+		event.preventDefault();
+		exit();
+	});
+
+	$('.search-container').click(function (event) {
+		event.stopPropagation()
+	});
 });
 var options = {
   keys: ['title', 'url'],   // keys to search in
@@ -42,7 +52,7 @@ var currentResults;
 chrome.runtime.sendMessage(undefined, 'bookmarks', undefined, function ( list ) {
 	window.fuzzy = new Fuse(list, options);;
 	var html = createList(list);
-	appendHtml(document.body, html);
+	appendHtml(document.getElementById('results'), html);
 });
 
 function createList(list) {
@@ -56,7 +66,7 @@ function createList(list) {
 function createItem(item) {
 	var html = '<li id="' + item.id + '"class="entry"><a href="' + item.url + '">';
 	if (item.title) {
-		html += '<span class="title">' + item.title + '</span><span class="url">' + item.url + '</span>';
+		html += '<span class="title">' + item.title + '</span> - <span class="url">' + item.url + '</span>';
 	} else {
 		html += '<span class="title">' + item.url + '</span>';
 	}
@@ -117,4 +127,8 @@ function indexOf2D( array, value ) {
 		}
 	};
 	return -1;
+}
+
+function exit() {
+	parent.window.postMessage('removeFrame', '*');
 }

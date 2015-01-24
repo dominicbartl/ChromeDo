@@ -7,9 +7,9 @@ function createIFrame(url) {
 	ifrm.setAttribute('src', url);
 	ifrm.setAttribute('id', id);
 	ifrm.setAttribute('frameborder', '0');
-	ifrm.setAttribute('style', 'position:fixed; top: 100px; right:0; left:0; margin: 0 auto; z-index:99999;');
-	ifrm.style.width = 640 + "px";
-	ifrm.style.height = 600 + "px";
+	ifrm.setAttribute('style', 'position:fixed; top: 0; right:0; bottom:0; left:0; margin: 0 auto; z-index:99999;');
+	ifrm.style.width = 100 + "%";
+	ifrm.style.height = 100 + "%";
 	document.body.appendChild(ifrm);
 }
 

@@ -20,7 +20,8 @@
 	"options_page": "src/options/index.html",
 	"permissions": [
 		"bookmarks",
-		"history"
+		"history",
+		"chrome://favicon/*"
 	],
 	"commands": {
 		"show-popup": {
