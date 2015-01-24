@@ -43,13 +43,19 @@ $(document).ready(function () {
 });
 var options = {
   keys: ['title', 'url'],   // keys to search in
-  id: 'id',                  // return a list of identifiers only
+  id: 'id',                 // return a list of identifiers only
   threshold: 0.3
 };
 var focusIndex = -1;
 var currentResults;
 
+/*
+Send message to background page to request all bookmarks
+sendMessage(extensionId, object, options, callback);
+*/
+console.log('Requesting bookmarks (Step 1)');
 chrome.runtime.sendMessage(undefined, 'bookmarks', undefined, function ( list ) {
+	console.log('Response with bookmarks (Step 2)');
 	window.fuzzy = new Fuse(list, options);;
 	var html = createList(list);
 	appendHtml(document.getElementById('results'), html);
@@ -82,6 +88,7 @@ function appendHtml(el, str) {
 }
 
 function search(q) {
+	console.log('Search for: ' + q);
 	currentResults = fuzzy.search(q);
 	highlight(currentResults);
 	

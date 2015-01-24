@@ -1,11 +1,13 @@
 
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse){
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	if (message === 'bookmarks') {
+		console.log('Got bookmark request (Step 2)');
 		sendResponse(window.bms);
 	};
 });
 
 Bookmarks.get( function ( list ) {
+	console.log('Preloaded bookmarks (Step 1)');
 	window.bms = list;
 });
 
