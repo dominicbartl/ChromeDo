@@ -42,9 +42,9 @@ $(document).ready(function () {
 	});
 });
 var options = {
-  keys: ['title', 'url'],   // keys to search in
-  id: 'id',                 // return a list of identifiers only
-  threshold: 0.3
+	keys: ['title', 'url'],   // keys to search in
+	id: 'id',                 // return a list of identifiers only
+	threshold: 0.3
 };
 var focusIndex = -1;
 var currentResults;
