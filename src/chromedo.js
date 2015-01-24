@@ -1,7 +1,6 @@
 $(document).ready(function () {
 	$('.search-input').keyup(function (event) {
 		if (event.keyCode === 40) {
-			console.log(event);
 			event.preventDefault();
 			if (focusIndex >= currentResults.length -1) {
 				focusIndex = 0;
@@ -18,12 +17,7 @@ $(document).ready(function () {
 		} else if (event.keyCode === 27) {
 			exit();
 		} else if (event.keyCode === 13) {
-			var url = $('.focus a').attr('href');
-			if (event.ctrlKey) {
-				window.parent.open(url,'_blank');
-			} else {
-				window.parent.location.href = url;
-			}
+			openSelected();
 		} else {
 			var query = event.currentTarget.value;
 			search(query);
@@ -87,6 +81,20 @@ function search(q) {
 	
 }
 
+function openSelected() {
+	var url = $('.focus a').attr('href');
+	if (!url) {
+		exit();
+		return;
+	}
+	if (event.ctrlKey) {
+		window.parent.open(url,'_blank');
+	} else {
+		window.parent.location.href = url;
+	}
+	exit();
+}
+
 function highlight( ids ) {
 	$('.entry').css('display', 'none');
 	var nodes = $.map( ids, function(i) { return document.getElementById(i) } );
@@ -111,11 +119,8 @@ function focusCurrent() {
 	if (focusIndex < 0) {
 		return;
 	}
-	var id = currentResults[focusIndex]
-	if (!id) {
-		return;
-	};
-	id = id[0];
+	var id = currentResults[focusIndex];
+	console.log(id);
 	$('.entry').removeClass('focus');
 	$('#' + id).addClass('focus');
 }
