@@ -54,9 +54,7 @@ var lastQuery = '';
 Send message to background page to request all bookmarks
 sendMessage(extensionId, object, options, callback);
 */
-console.log('Requesting bookmarks (Step 1)');
 chrome.runtime.sendMessage(undefined, 'bookmarks', undefined, function ( list ) {
-	console.log('Response with bookmarks (Step 2)');
 	window.fuzzy = new Fuse(list, options);;
 	var html = createList(list);
 	appendHtml(document.getElementById('results'), html);
@@ -91,7 +89,6 @@ function appendHtml(el, str) {
 function search(q) {
 	q = q.trim();
 	if (q != lastQuery) {
-		console.log('Search for: ' + q);
 		currentResults = fuzzy.search(q);
 		highlight(currentResults);
 		lastQuery = q;
