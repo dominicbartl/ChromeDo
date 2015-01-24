@@ -2,6 +2,7 @@ ChromeDo
 ========
 
 **Simple, fast, smart, Do.**
+
 Inspired by GnomeDo this extension lets you search your bookmarks right at your fingertips.
 
 ChromeDo allows you to quickly search through all your bookmarks. Just press Ctrl+SPACE on any page to open the search bar. Type your query and never reach for the mouse again.
